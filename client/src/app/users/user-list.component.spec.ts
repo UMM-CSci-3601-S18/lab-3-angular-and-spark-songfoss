@@ -96,7 +96,7 @@ describe('User list', () => {
   });
 
   it('user list filters by age', () => {
-    expect(userList.filteredUsers.length).toBe(3);
+    expect(userList.filteredUsers.length).toBe(3); // should expected:3
     userList.userAge = 37;
     const a: Observable<User[]> = userList.refreshUsers();
     a.do(x => Observable.of(x))
