@@ -1,16 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {UserListService} from './todo-list.service';
-import {User} from './todo';
+import {TodoListService} from './todo-list.service';
+import {Todo} from './todo';
 import {Observable} from 'rxjs/Observable';
 
 @Component({
-  selector: 'app-user-list-component',
+  selector: 'app-todo-list-component',
   templateUrl: 'todo-list.component.html',
   styleUrls: ['./todo-list.component.css'],
   providers: []
 })
 
-export class UserListComponent implements OnInit {
+export class TodoListComponent implements OnInit {
   // These are public so that tests can reference them (.spec.ts)
   public todos: Todo[];
   public filteredTodos: Todo[];
@@ -32,7 +32,7 @@ export class UserListComponent implements OnInit {
 
   }
 
-  public filterUsers(searchOwner: string, searchStatus: boolean, searchBody:string, searchID: string, searchCategory: string): User[] {
+  public filterTodos(searchOwner: string, searchStatus: boolean, searchBody:string, searchID: string, searchCategory: string): Todo[] {
 
     this.filteredTodos = this.todos;
 
@@ -55,8 +55,15 @@ export class UserListComponent implements OnInit {
 
     // Filter by body
     if (searchBody != null) {
-      this.filteredTodos = this.filteredTodos.filter((todo: Todo) => {
-        return !searchStatus || todo.status == true  || todo.status == false;
+      this.filteredTodos = this.filteredTodos.filter(todo => {
+        return !searchBody || todo.body.toLowerCase().indexOf(searchBody) !== -1;
+      });
+    }
+
+    //Filter by category
+    if (searchCategory != null) {
+      this.filteredTodos = this.filteredTodos.filter(todo => {
+        return !searchCategory || todo.category.toLowerCase().indexOf(searchCategory) !== -1;
       });
     }
 
@@ -68,27 +75,27 @@ export class UserListComponent implements OnInit {
    * Starts an asynchronous operation to update the users list
    *
    */
-  refreshUsers(): Observable<User[]> {
+  refreshTodos(): Observable<Todo[]> {
     // Get Users returns an Observable, basically a "promise" that
     // we will get the data from the server.
     //
     // Subscribe waits until the data is fully downloaded, then
     // performs an action on it (the first lambda)
 
-    const users: Observable<User[]> = this.userListService.getUsers();
-    users.subscribe(
+    const todos: Observable<Todo[]> = this.todoListService.getTodos();
+    todos.subscribe(
       returnedUsers => {
-        this.users = returnedUsers;
-        this.filterUsers(this.userName, this.userAge);
+        this.todos = returnedUsers;
+        this.filterTodos(this.todoOwner, this.todoStatus,this.todoBody,this.todoID,this.todoCategory);
       },
       err => {
         console.log(err);
       });
-    return users;
+    return todos;
   }
 
 
   ngOnInit(): void {
-    this.refreshUsers();
+    this.refreshTodos();
   }
 }
