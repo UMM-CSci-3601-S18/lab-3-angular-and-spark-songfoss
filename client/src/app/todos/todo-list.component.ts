@@ -72,9 +72,11 @@ export class TodoListComponent implements OnInit {
     // Filter by body
     if (searchBody != null) {
       this.filteredTodos = this.filteredTodos.filter(todo => {
-        return !searchBody || todo.body.toLowerCase().indexOf(searchBody) !== -1;
+        console.log(todo.body.toLowerCase().indexOf(searchBody))
+        return !searchBody || todo.body.toLowerCase().indexOf(searchBody.toLocaleLowerCase()) !== -1;
       });
     }
+
 
     //Filter by category
     if (searchCategory != null) {

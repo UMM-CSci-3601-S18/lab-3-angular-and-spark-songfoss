@@ -137,6 +137,15 @@ describe('Todo list', () => {
       .subscribe(x => expect(todoList.filteredTodos.length).toBe(2));
   });
 
+  it('user list filters by status', () => {
+    console.log(todoList.filteredTodos.length);
+    expect(todoList.filteredTodos.length).toBe(5);
+    todoList.todoStatus = 'true';
+    const a: Observable<Todo[]> = todoList.refreshTodos();
+    a.do(x => Observable.of(x))
+      .subscribe(x => expect(todoList.filteredTodos.length).toBe(3));
+  });
+
   it('user list filters by owner and id', () => {
     expect(todoList.filteredTodos.length).toBe(5);
     todoList.todoOwner = "Fry";
@@ -159,6 +168,14 @@ describe('Todo list', () => {
     expect(todoList.filteredTodos.length).toBe(5);
     todoList.todoOwner = "Barry";
     todoList.todoCategory = "video games";
+    const a: Observable<Todo[]> = todoList.refreshTodos();
+    a.do(x => Observable.of(x))
+      .subscribe(x => expect(todoList.filteredTodos.length).toBe(1));
+  });
+
+  it('todo list filters by body', () => {
+    expect(todoList.filteredTodos.length).toBe(5);
+    todoList.todoBody = "Ullamco irure laborum magna dolor non. Anim occaecat adipisicing cillum eu magna in.";
     const a: Observable<Todo[]> = todoList.refreshTodos();
     a.do(x => Observable.of(x))
       .subscribe(x => expect(todoList.filteredTodos.length).toBe(1));
