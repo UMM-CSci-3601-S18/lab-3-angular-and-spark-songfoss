@@ -90,6 +90,10 @@ describe('Todo list', () => {
     expect(todoList.todos.some((todo: Todo) => todo.id === '58895985a22c04e761776d54')).toBe(true);
   });
 
+  it('contains id\'58895985ea7f6d35db12b3d8\'', () => {
+    expect(todoList.todos.some((todo: Todo) => todo.id === '58895985ea7f6d35db12b3d8')).toBe(false);
+  });
+
   it('contains body\'In sunt ex non tempor cillum commodo amet incididunt anim qui commodo quis. Cillum non labore ex sint esse.\'', () => {
     expect(todoList.todos.some((todo: Todo) => todo.body === 'In sunt ex non tempor cillum commodo amet incididunt anim qui commodo quis. Cillum non labore ex sint esse.')).toBe(true);
   });
@@ -127,13 +131,13 @@ describe('Todo list', () => {
   it('user list filters by status', () => {
     console.log(todoList.filteredTodos.length);
     expect(todoList.filteredTodos.length).toBe(5);
-    todoList.todoStatus = true;
+    todoList.todoStatus = 'false';
     const a: Observable<Todo[]> = todoList.refreshTodos();
     a.do(x => Observable.of(x))
-      .subscribe(x => expect(todoList.filteredTodos.length).toBe(3));
+      .subscribe(x => expect(todoList.filteredTodos.length).toBe(2));
   });
 
-  it('user list filters by owner and id (T1)', () => {
+  it('user list filters by owner and id', () => {
     expect(todoList.filteredTodos.length).toBe(5);
     todoList.todoOwner = "Fry";
     todoList.todoID="58895985c1849992336c219b";

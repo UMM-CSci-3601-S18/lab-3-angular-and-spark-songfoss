@@ -16,12 +16,11 @@ export class TodoListComponent implements OnInit {
   public filteredTodos: Todo[];
 
   public todoOwner: string;
-  public todoStatus: boolean;
+  public todoStatus: string;
   public todoBody: string;
   public todoID: string;
   public todoCategory: string;
 
-  public stringStatus: string;
 
 
   // Inject the UserListService into this component.
@@ -34,7 +33,7 @@ export class TodoListComponent implements OnInit {
 
   }
 
-  public filterTodos(searchOwner: string, searchStatus: boolean, searchBody:string, searchID: string, searchCategory: string): Todo[] {
+  public filterTodos(searchOwner: string, searchStatus: string, searchBody:string, searchID: string, searchCategory: string): Todo[] {
 
     this.filteredTodos = this.todos;
 
@@ -56,17 +55,18 @@ export class TodoListComponent implements OnInit {
       });
     }
 
-    // Filter by status//may false
+    // Filter by status
     if (searchStatus != null) {
-      this.stringStatus = searchStatus.toString();
-      this.filteredTodos = this.filteredTodos.filter((todo: Todo) => {
-        if (this.stringStatus === "true"){
-          return todo.status;
-        }else{
-          return todo.status;
+      this.filteredTodos = this.filteredTodos.filter((todo) => {
+        if(searchStatus.toLowerCase() == "complete" || searchStatus.toLowerCase() == "true"){
+          return todo.status == true;
+        } else if (searchStatus.toLowerCase() == "incomplete" || searchStatus.toLowerCase() == "false"){
+          return todo.status == false;
         }
       });
     }
+
+
 
 
     // Filter by body
@@ -102,9 +102,9 @@ export class TodoListComponent implements OnInit {
 
     const todos: Observable<Todo[]> = this.todoListService.getTodos();
     todos.subscribe(
-      returnedUsers => {
-        this.todos = returnedUsers;
-        this.filterTodos(this.todoOwner, this.todoStatus,this.todoBody,this.todoID,this.todoCategory);
+      returnedTodos => {
+        this.todos = returnedTodos;
+        this.filterTodos(this.todoOwner, this.todoStatus ,this.todoBody,this.todoID,this.todoCategory);
       },
       err => {
         console.log(err);
