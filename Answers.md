@@ -1,4 +1,4 @@
-1. Have 3 .gitignore in total.  One is in the the main directory. One is in the server directory. One is the client directory,
+ 1. Have 3 .gitignore in total.  One is in the the main directory. One is in the server directory. One is the client directory,
  There various .gitignore files help communicate what files to not commit to github. For example, 
  if a parent node tells its child node to ignore all jar files, but the child node wants to have one specific jar file, the child will be able to commit its jar file. 
  Also, compared to the last lab we have multiple .gitignore files.
@@ -8,7 +8,7 @@
  client gradle files. The gradle file in server directory runs the server and its tests. The gradle file in
  the client directory runs the client stuff and its tests. 
 
-3. 
+3. Here we have app.component.html makes the navebar and app.component.spec.ts to create a logic that shows how navbar is going to work.  Server is not the only routing because we can see from app.routes.ts, which shows us the client also has the thing doing routing.
 
 4. user-list.service.ts gets the information from the server. User-list.component.ts talks to user-list.service.ts
  and it handles the logic for the service like filtering users. They are separated from each other since they do
