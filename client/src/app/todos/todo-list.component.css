@@ -37,10 +37,16 @@ mat-panel-title.mat-expansion-panel-header-title{
   align-content: center;
 }
 
+#Panel-Header{
+  font-size: 180%;
+  font-family: cursive;
+}
 
-
-#Owner{
-  margin-left: 24%;
+#Row{
+  margin-right: 65%;
+}
+#Owner, #Body, #Category{
+  margin-left: 30px;
 }
 
 

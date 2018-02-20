@@ -4,18 +4,50 @@
       <mat-card-title id="todo-list-title">Todos</mat-card-title>
       <mat-divider></mat-divider>
       <mat-card-content>
-        <mat-form-field id="Owner">
-          <input matInput id="todoOwner" #input placeholder="Filter by owner" (input)="todoOwner = $event.target.value">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput id="todoStatus" #input placeholder="Filter by status" (input)="todoStatus = $event.target.value">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput id="todoBody" #input placeholder="Filter by body" (input)="todoBody = $event.target.value">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput id="todoCategory" #input placeholder="Filter by category" (input)="todoCategory = $event.target.value">
-        </mat-form-field>
+
+
+        <!--this is our  second Angular feature -->
+        <mat-expansion-panel>
+          <mat-expansion-panel-header id="Panel-Header">
+            Please enter information here
+          </mat-expansion-panel-header>
+
+
+          <form>
+
+            <!--this is our  first Angular feature -->
+            <label> Select status:</label>
+            <select name="dropdown" id="todoStatus" #input placeholder="Filter by status" (input)="todoStatus = $event.target.value">
+              <option value=""></option>
+              <option value="complete">complete</option>
+              <option value="incomplete">incomplete</option>
+            </select>
+
+          </form>
+
+
+          <mat-action-row id="Row">
+            <mat-form-field id="Owner">
+              <input matInput id="todoOwner" #input placeholder="Filter by owner" (input)="todoOwner = $event.target.value">
+            </mat-form-field>
+            <mat-form-field id="Body">
+              <input matInput id="todoBody" #input placeholder="Filter by body" (input)="todoBody = $event.target.value">
+            </mat-form-field>
+            <mat-form-field id="Category">
+              <input matInput id="todoCategory" #input placeholder="Filter by category" (input)="todoCategory = $event.target.value">
+            </mat-form-field>
+
+          </mat-action-row>
+        </mat-expansion-panel>
+
+
+
+
+
+
+
+
+
 
         <mat-accordion *ngIf="todos; else todosError">
 
