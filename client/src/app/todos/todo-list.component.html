@@ -18,9 +18,9 @@
             <!--this is our  first Angular feature -->
             <label> Select status:</label>
             <select name="dropdown" id="todoStatus" #input placeholder="Filter by status" (input)="todoStatus = $event.target.value">
-              <option value=""></option>
-              <option value="complete">complete</option>
-              <option value="incomplete">incomplete</option>
+              <option value="" id="empty"></option>
+              <option value="complete" id="complete">complete</option>
+              <option value="incomplete" id="incomplete">incomplete</option>
             </select>
 
           </form>

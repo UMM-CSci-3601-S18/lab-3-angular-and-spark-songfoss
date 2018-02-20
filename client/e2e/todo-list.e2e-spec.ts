@@ -10,9 +10,9 @@ browser.driver.controlFlow().execute = function () {
   // queue 100ms wait between test
   //This delay is only put here so that you can watch the browser do its' thing.
   //If you're tired of it taking long you can remove this call
-  //origFn.call(browser.driver.controlFlow(), function () {
-  //  return protractor.promise.delayed(100);
-  //});
+  // origFn.call(browser.driver.controlFlow(), function () {
+  //   return protractor.promise.delayed(100);
+  // });
 
   return origFn.apply(browser.driver.controlFlow(), args);
 };
@@ -24,13 +24,17 @@ describe('Todo list', () => {
     page = new TodoPage();
   });
 
+
   it('should get and highlight Todo Owner attribute ', () => {
+
     page.navigateTo();
     expect(page.getTodoTitle()).toEqual('Todos');
   });
 
   it('should type something in filter owner box and check that it returned correct element', () => {
+
     page.navigateTo();
+    page.clickInput();
     page.typeAOwner("d");
     expect(page.getUniqueTodo("homework")).toEqual("Dawn");
     page.backspace();
@@ -39,7 +43,9 @@ describe('Todo list', () => {
   });
 
   it('should type something in filter category box and check that it returned correct element', () => {
+
     page.navigateTo();
+    page.clickInput();
     page.typeACategory("video");
     expect(page.getUniqueTodo("video games")).toEqual("Fry");
     page.repeatBackspace(5);
@@ -48,7 +54,9 @@ describe('Todo list', () => {
   });
 
   it('should type something in filter body box and check that it returned correct element', () => {
+
     page.navigateTo();
+    page.clickInput();
     page.typeABody("occaecat");
     expect(page.getUniqueTodo("homework")).toEqual("Fry");
     page.repeatBackspace(8);
@@ -57,22 +65,26 @@ describe('Todo list', () => {
   });
 
   it('should type something in filter status box and check that it returned correct element', () => {
+
     page.navigateTo();
-    page.typeAStatus("complete");
+    page.clickInput();
+    page.clickComplete();
     expect(page.getUniqueTodo("homework")).toEqual("Fry");
     page.repeatBackspace(8);
-    page.typeAStatus("incomplete")
+    page.clickIncomplete();
     expect(page.getUniqueTodo("software design")).toEqual("Blanche");
   });
 
   it('should type something in filter by owner box, filter by status box, filter by body box, and filter by category and check that it returned correct element', () => {
+
     page.navigateTo();
+    page.clickInput();
     page.typeAOwner("Fry");
     expect(page.getUniqueTodo("video games")).toEqual("Fry");
 
 
 
-    page.typeAStatus("incomplete")
+    page.clickIncomplete();
 
     expect(page.getUniqueTodo("video games")).toEqual("Fry");
 

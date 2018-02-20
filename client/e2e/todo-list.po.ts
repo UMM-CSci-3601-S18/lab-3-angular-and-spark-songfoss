@@ -35,20 +35,34 @@ export class TodoPage {
     return title;
   }
 
+  clickInput() {
+    element(by.id('Panel-Header')).click();
+  }
   typeAOwner(owner: string) {
     let input = element(by.id('todoOwner'));
     input.click();
     input.sendKeys(owner);
   }
 
-  typeAStatus(status: string){
-    let input = element(by.id('todoStatus'));
-    input.click();
-    input.sendKeys(status);
+  clickComplete(){
+
+    element(by.id('complete')).click();
   }
+
+  clickIncomplete(){;
+
+    element(by.id('incomplete')).click();
+  }
+
+  clickEmpty(){
+
+    element(by.id('empty')).click();
+  }
+
 
   typeABody(body: string){
     let input = element(by.id('todoBody'));
+
     input.click();
     input.sendKeys(body);
   }
