@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {Todo} from './todo';
 import {TodoListService} from './todo-list.service';
 
-describe('User list service: ', () => {
+describe('Todo list service: ', () => {
   // A small collection of test users
   const testTodos: Todo[] = [
     {
@@ -111,8 +111,8 @@ describe('User list service: ', () => {
   });
 
   it('getTodos() calls api/todos', () => {
-    // Assert that the users we get from this call to getUsers()
-    // should be our set of test users. Because we're subscribing
+    // Assert that the todos we get from this call to getTodos()
+    // should be our set of test todos. Because we're subscribing
     // to the result of getUsers(), this won't actually get
     // checked until the mocked HTTP request "returns" a response.
     // This happens when we call req.flush(testUsers) a few lines

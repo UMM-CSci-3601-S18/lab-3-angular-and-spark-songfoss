@@ -28,7 +28,7 @@ export class TodoPage {
     }
   }
 
-  getUserTitle() {
+  getTodoTitle() {
     let title = element(by.id('todo-list-title')).getText();
     this.highlightElement(by.id('todo-list-title'));
 

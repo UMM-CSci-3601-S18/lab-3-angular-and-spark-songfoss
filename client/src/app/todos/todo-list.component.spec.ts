@@ -128,8 +128,7 @@ describe('Todo list', () => {
       .subscribe(x => expect(todoList.filteredTodos.length).toBe(2));
   });
 
-  it('user list filters by status', () => {
-    console.log(todoList.filteredTodos.length);
+  it('todolist filters by status', () => {
     expect(todoList.filteredTodos.length).toBe(5);
     todoList.todoStatus = 'false';
     const a: Observable<Todo[]> = todoList.refreshTodos();
@@ -137,8 +136,7 @@ describe('Todo list', () => {
       .subscribe(x => expect(todoList.filteredTodos.length).toBe(2));
   });
 
-  it('user list filters by status', () => {
-    console.log(todoList.filteredTodos.length);
+  it('todolist filters by status', () => {
     expect(todoList.filteredTodos.length).toBe(5);
     todoList.todoStatus = 'true';
     const a: Observable<Todo[]> = todoList.refreshTodos();
@@ -146,7 +144,15 @@ describe('Todo list', () => {
       .subscribe(x => expect(todoList.filteredTodos.length).toBe(3));
   });
 
-  it('user list filters by owner and id', () => {
+  it('todolist filters by status', () => {
+    expect(todoList.filteredTodos.length).toBe(5);
+    todoList.todoStatus = 'false';
+    const a: Observable<Todo[]> = todoList.refreshTodos();
+    a.do(x => Observable.of(x))
+      .subscribe(x => expect(todoList.filteredTodos.length).toBe(2));
+  });
+
+  it('todolist filters by owner and id', () => {
     expect(todoList.filteredTodos.length).toBe(5);
     todoList.todoOwner = "Fry";
     todoList.todoID="58895985c1849992336c219b";
@@ -155,7 +161,7 @@ describe('Todo list', () => {
       .subscribe(x => expect(todoList.filteredTodos.length).toBe(1));
   });
 
-  it('user list filters by owner and id (T2)', () => {
+  it('todolist filters by owner and id (T2)', () => {
     expect(todoList.filteredTodos.length).toBe(5);
     todoList.todoOwner = "Fry";
     todoList.todoID="58895985c1849992336c219b";
@@ -164,7 +170,7 @@ describe('Todo list', () => {
       .subscribe(x => expect(todoList.filteredTodos.length).toBe(1));
   });
 
-  it('user list filters by category and owner', () => {
+  it('todolist filters by category and owner', () => {
     expect(todoList.filteredTodos.length).toBe(5);
     todoList.todoOwner = "Barry";
     todoList.todoCategory = "video games";
@@ -173,7 +179,7 @@ describe('Todo list', () => {
       .subscribe(x => expect(todoList.filteredTodos.length).toBe(1));
   });
 
-  it('todo list filters by body', () => {
+  it('todolist filters by body', () => {
     expect(todoList.filteredTodos.length).toBe(5);
     todoList.todoBody = "Ullamco irure laborum magna dolor non. Anim occaecat adipisicing cillum eu magna in.";
     const a: Observable<Todo[]> = todoList.refreshTodos();
@@ -183,7 +189,7 @@ describe('Todo list', () => {
 
 });
 
-describe('Misbehaving User List', () => {
+describe('Misbehaving Todo List', () => {
   let todoList: TodoListComponent;
   let fixture: ComponentFixture<TodoListComponent>;
 
@@ -192,7 +198,7 @@ describe('Misbehaving User List', () => {
   };
 
   beforeEach(() => {
-    // stub UserService for test purposes
+    // stub TodoService for test purposes
     todoListServiceStub = {
       getTodos: () => Observable.create(observer => {
         observer.error('Error-prone observable');

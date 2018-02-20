@@ -26,7 +26,7 @@ describe('Todo list', () => {
 
   it('should get and highlight Todo Owner attribute ', () => {
     page.navigateTo();
-    expect(page.getUserTitle()).toEqual('Todos');
+    expect(page.getTodoTitle()).toEqual('Todos');
   });
 
   it('should type something in filter owner box and check that it returned correct element', () => {
@@ -64,19 +64,24 @@ describe('Todo list', () => {
     page.typeAStatus("incomplete")
     expect(page.getUniqueTodo("software design")).toEqual("Blanche");
   });
-/*
+
   it('should type something in filter by owner box, filter by status box, filter by body box, and filter by category and check that it returned correct element', () => {
     page.navigateTo();
     page.typeAOwner("Fry");
     expect(page.getUniqueTodo("video games")).toEqual("Fry");
+
+
+
     page.typeAStatus("incomplete")
+
     expect(page.getUniqueTodo("video games")).toEqual("Fry");
+
     page.typeABody("v");
     expect(page.getUniqueTodo("video games")).toEqual("Fry");
     page.typeACategory("v");
     expect(page.getUniqueTodo("video games")).toEqual("Fry");
 
   });
-*/
+
 
 });

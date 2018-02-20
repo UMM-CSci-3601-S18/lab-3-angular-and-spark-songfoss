@@ -23,7 +23,7 @@ export class TodoListComponent implements OnInit {
 
 
 
-  // Inject the UserListService into this component.
+  // Inject the TodoListService into this component.
   // That's what happens in the following constructor.
   //
   // We can call upon the service for interacting
@@ -38,7 +38,7 @@ export class TodoListComponent implements OnInit {
     this.filteredTodos = this.todos;
 
 
-
+    //Filter by id
     if (searchID != null) {
       searchID = searchID.toLocaleLowerCase();
 
@@ -72,7 +72,6 @@ export class TodoListComponent implements OnInit {
     // Filter by body
     if (searchBody != null) {
       this.filteredTodos = this.filteredTodos.filter(todo => {
-        console.log(todo.body.toLowerCase().indexOf(searchBody))
         return !searchBody || todo.body.toLowerCase().indexOf(searchBody.toLocaleLowerCase()) !== -1;
       });
     }
